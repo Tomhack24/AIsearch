@@ -2,3 +2,4 @@
 harumu
 inoue
 kuwa
+yoshioka
