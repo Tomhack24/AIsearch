@@ -1,3 +1,4 @@
+import { Plot } from "@/types";
 import { supabase } from "./supabase";
 
 export const getAllPlots = async() => {
