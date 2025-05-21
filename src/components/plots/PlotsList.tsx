@@ -11,7 +11,7 @@ const PlotsList = ( { plots } : PlotsListProps) => {
 
     
     return (
-        <ul>
+        <ul className='flex flex-around justify-center flex-wrap m-5 max-w-content'>
             {plots.map((plot) => (
                 <PlotDetail key={plot.id} plot = {plot}/>
             ))}
