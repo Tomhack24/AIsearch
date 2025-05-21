@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { getAllPlots } from "../../lib/supabaseFunction";
 import PlotsList from "@/components/plots/PlotsList";
+import Search from "@/components/search/Search";
 
 
 export default  function Home() {
@@ -18,14 +19,16 @@ export default  function Home() {
     getPlots();
   },[])
 
-
-  
-
   return (
 
-    <div className="items-center justify-items-center min-h-screen justify-center font-[family-name:var(--font-geist-sans)]">
-
-      <PlotsList plots = {plots}/>
-    </div>
+    <main className="min-h-screen min-w-full flex flex-col items-center justify-center bg-gray-100">
+      <h3 className="text-center text-4xl mb-10">AI 検索</h3>
+      <div>
+        <Search />
+      </div>
+      <div>
+        <PlotsList plots = {plots}/>
+      </div>
+    </main>
   );
 }
