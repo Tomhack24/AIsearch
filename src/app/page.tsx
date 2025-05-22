@@ -21,12 +21,12 @@ export default  function Home() {
 
   return (
 
-    <main className="min-h-screen min-w-full flex flex-col items-center justify-center bg-gray-100">
+    <main className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
       <h3 className="text-center text-4xl mb-10">AI 検索</h3>
       <div>
         <Search />
       </div>
-      <div>
+      <div className="w-full flex justify-center">
         <PlotsList plots = {plots}/>
       </div>
     </main>

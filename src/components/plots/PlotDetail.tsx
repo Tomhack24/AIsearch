@@ -1,24 +1,40 @@
 import { Plot } from '@/types'
-import React from 'react'
+import React, { useState } from 'react'
 
 interface PlotDetailProps{
     plot : Plot;
 }
 
 const PlotDetail =  ( { plot } : PlotDetailProps) => {
+
+  const handleOpen = () => {
+    setIsOpen(!isOpen);
+  }
+
+  const [isOpen,setIsOpen] = useState(false);
+
   return (
-    <li key={plot.id} className='flex flex-col justify-center w-[480px] mt-10 mx-10'>
+    <li key={plot.id} className='flex w-[480px] m-10 p-10 border-1 border-gray-200 bg-white shadow-xl rounded-4xl'>
       <div className='mx-auto'>
         <img 
           src={plot.img_url} 
           alt={plot.title} 
-          className="mx-auto w-[256px] h-[160px] object-contain"
+          className="mx-auto mb-2 w-[256px] h-[160px] object-contain"
         />
-        <div className="text-center mb-2">{plot.title}</div>
-        <div className='whitespace-pre-line w-fit mb-2'>{plot.good_point}</div>
-        <div className='whitespace-pre-line mb-2'>{plot.bad_point}</div>
-        <a href= {plot.url} className='text-blue-600 hover:text-blue-400 duration:200'>{plot.url}</a>
-        <div>{plot.keyword}</div>
+        <div className="text-center text-xl font-semibold text-neutral-700 mb-3">{plot.title}</div>
+        <div className="text-start  mb-5">{plot.headline}</div>
+        <button className='w-full text-end pt-3 pr-5 font-extrabold text-gray-600 border-t-1 border-b-gray-500' onClick={handleOpen}>
+          {isOpen ? "△" : "▽" }
+          </button>
+          <div 
+            className={`transition-all duration-300  overflow-hidden ${
+            isOpen ? 'max-h-[600px] mt-4' : 'max-h-0'}`}
+          >
+            <div className='whitespace-pre-line  mb-2'>{plot.good_point}</div>
+            <div className='whitespace-pre-line mb-2'>{plot.bad_point}</div>
+            <a href= {plot.url} className='text-blue-600 hover:text-blue-400 duration:200'>{plot.url}</a>
+            <div>{plot.keyword}</div>
+          </div>
       </div>
     </li>
 
