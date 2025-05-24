@@ -2,11 +2,13 @@ import { Plot } from '@/types'
 import React, { useState } from 'react'
 
 
-interface PlotDetailProps{
-    plot : Plot;
+interface PlotDetailProps {
+  plot: Plot;
+  isFavorite: boolean;
+  toggleFavorite: (id: string) => void;
 }
 
-const PlotDetail =  ( { plot } : PlotDetailProps) => {
+const PlotDetail = ({ plot, isFavorite, toggleFavorite }: PlotDetailProps) => {
 
   const handleOpen = () => {
     setIsOpen(!isOpen);
@@ -16,16 +18,24 @@ const PlotDetail =  ( { plot } : PlotDetailProps) => {
 
   return (
 
-    <li key={plot.id} className='flex w-[320px] mx-5 my-2 p-5 border-1 border-gray-200 bg-white shadow-xl rounded-4xl'>
-      <div className='text-sm mx-auto'>
+    <li className='relative flex w-[320px] mx-5 my-2 p-5 border-1 border-gray-200 bg-white shadow-xl rounded-4xl **transition-all duration-200 hover:translate-y-[-4px] hover:shadow-2xl**'>
+      {/* お気に入りボタン */}
+      <button
+        className="absolute right-4 top-4 text-2xl"
+        onClick={() => toggleFavorite(plot.id)}
+        aria-label="お気に入り"
+      >
+        {isFavorite ? "★" : "☆"}
+      </button>
 
+      <div className='text-sm mx-auto'>
         <img 
           src={plot.img_url} 
           alt={plot.title} 
           className="mx-auto mb-2 w-[200px] h-[120px] object-contain"
         />
-        <div className="text-center text-lg font-semibold text-neutral-700 mb-3">{plot.title}</div>
-        <div className="text-start  mb-5">{plot.headline}</div>
+        <div className="text-center text-2xl font-extrabold text-neutral-700 mb-3">{plot.title}</div>
+        <div className="text-start  text-lg mb-5">{plot.headline}</div>
         <button
           className='w-full flex items-center justify-end gap-2 py-2 px-4
                      font-bold text-gray-700 border-t-1 border-b-gray-500
@@ -57,13 +67,13 @@ const PlotDetail =  ( { plot } : PlotDetailProps) => {
 
             {/* 料金 */}
             <div className="mb-4">
-              <p className="font-semibold text-gray-800 text-lg mb-1">料金:</p> 
+              <p className="font-semibold text-gray-800 text-lg mb-1">利用プラン:</p> 
               <div className='whitespace-pre-line text-gray-700'>{plot.plan}</div>
             </div>
 
             {/* 関連リンク */}
             <div className="mb-4">
-              <p className="font-semibold text-gray-800 text-lg mb-1">関連リンク:</p>
+              <p className="font-semibold text-gray-800 text-lg mb-1">公式サイト:</p>
               <a
                 href={plot.url}
                 target="_blank" // 新しいタブで開く
