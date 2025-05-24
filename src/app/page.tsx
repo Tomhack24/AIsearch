@@ -24,7 +24,7 @@ export default  function Home() {
     <main className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
       <h3 className="text-center text-4xl mb-10">AI 検索</h3>
       <div>
-        <Search />
+        <Search plots={plots}/>
       </div>
       <div className="w-full flex justify-center">
         <PlotsList plots = {plots}/>
