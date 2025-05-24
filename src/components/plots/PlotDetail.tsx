@@ -17,7 +17,7 @@ const PlotDetail =  ( { plot } : PlotDetailProps) => {
   return (
 
     <li key={plot.id} className='flex w-[320px] mx-5 my-2 p-5 border-1 border-gray-200 bg-white shadow-xl rounded-4xl'>
-      <div className='text-xs mx-auto'>
+      <div className='text-sm mx-auto'>
 
         <img 
           src={plot.img_url} 
