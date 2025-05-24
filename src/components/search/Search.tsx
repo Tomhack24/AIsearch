@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import { Plot } from '@/types'
 import PlotsList from '../plots/PlotsList';
+import TagSearch from './TagSearch';
 
 interface SearchProps {
   plots: Plot[];
+  favorites: string[];
+  toggleFavorite: (id: string) => void;
 }
 
-const Search = ({ plots }: SearchProps) => {
+const Search = ({ plots, favorites, toggleFavorite }: SearchProps) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isEnterPressed, setIsEnterPressed] = useState(false);
 
@@ -35,6 +38,7 @@ const Search = ({ plots }: SearchProps) => {
         placeholder="検索..."
         className="w-full px-4 py-2 border rounded"
       />
+
       {isEnterPressed && searchQuery && (
         <div className="mt-2">
           {filteredPlots.length === 0 ? (
@@ -45,6 +49,27 @@ const Search = ({ plots }: SearchProps) => {
           ) : (
             <PlotsList plots={filteredPlots}/>
           )}
+
+      <div className='flex items-center'>
+        <p className='text-sm mr-2'>ヒント :</p>
+      <TagSearch plots={plots} setSearchQuery={setSearchQuery}/>
+      </div>
+      {searchQuery && (
+        <div className="mt-2">
+          <PlotsList
+            plots={filteredPlots}
+            favorites={favorites}
+            toggleFavorite={toggleFavorite}
+          />
+        </div>
+      )}
+      {!searchQuery && (
+        <div className="mt-2">
+          <PlotsList
+            plots={plots}
+            favorites={favorites}
+            toggleFavorite={toggleFavorite}
+          />
         </div>
       )}
     </div>
