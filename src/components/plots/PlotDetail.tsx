@@ -22,7 +22,7 @@ const PlotDetail =  ( { plot } : PlotDetailProps) => {
         <img 
           src={plot.img_url} 
           alt={plot.title} 
-          className="mx-auto mb-2 w-[150px] h-[120px] object-contain"
+          className="mx-auto mb-2 w-[200px] h-[120px] object-contain"
         />
         <div className="text-center text-lg font-semibold text-neutral-700 mb-3">{plot.title}</div>
         <div className="text-start  mb-5">{plot.headline}</div>
