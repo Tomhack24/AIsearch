@@ -50,11 +50,20 @@ const Search = ({ plots, favorites, toggleFavorite }: SearchProps) => {
               </div>
             </div>
           ) : (
+          <div className='my-3 '>
+            <div className="flex items-center my-4">
+              <div className="flex-grow border-t border-gray-500"></div>
+              <span className="mx-4 text-gray-500 whitespace-nowrap">
+                  {filteredPlots.length}個のAIが見つかりました
+              </span>
+              <div className="flex-grow border-t border-gray-500"></div>
+            </div>
             <PlotsList
               plots={filteredPlots}
               favorites={favorites}
               toggleFavorite={toggleFavorite}
             />
+          </div>
           )}
         </div>
       )}
