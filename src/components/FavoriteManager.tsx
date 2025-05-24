@@ -1,21 +1,11 @@
-"use client"
-
-import Image from "next/image";
 import { useEffect, useState } from "react";
-import PlotsList from "@/components/plots/PlotsList";
 import Search from "@/components/search/Search";
 import { getAllPlots } from "../../lib/supabaseFunction";
-
 import { Plot } from "@/types";
 
-import TagSearch from "@/components/search/TagSearch";
-import FavoriteManager from "@/components/FavoriteManager";
-
-
-export default function Home() {
+const FavoriteManager = () => {
   const [plots, setPlots] = useState<Plot[]>([]);
   const [favorites, setFavorites] = useState<string[]>(() => {
-    // 初期値をlocalStorageから取得
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("favorites");
       return saved ? JSON.parse(saved) : [];
@@ -32,7 +22,6 @@ export default function Home() {
     getPlots();
   }, []);
 
-  // favoritesが変わるたびにlocalStorageへ保存
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
@@ -48,9 +37,30 @@ export default function Home() {
     : plots;
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
-      <h3 className="mt-50 text-center text-4xl mb-10">AI 検索</h3>
-      <FavoriteManager />
-    </main>
+    <>
+      <div className="mb-4">
+        <button
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          onClick={() => setShowFavorites((prev) => !prev)}
+        >
+          {showFavorites ? "すべて表示" : "お気に入りだけ表示"}
+        </button>
+      </div>
+      <div>
+        {showFavorites && displayedPlots.length === 0 ? (
+          <div className="text-gray-500 text-center my-8">
+            お気に入りが登録されていません
+          </div>
+        ) : (
+          <Search
+            plots={displayedPlots}
+            favorites={favorites}
+            toggleFavorite={toggleFavorite}
+          />
+        )}
+      </div>
+    </>
   );
-}
+};
+
+export default FavoriteManager;
