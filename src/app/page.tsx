@@ -58,7 +58,6 @@ export default function Home() {
         </button>
       </div>
       <div>
-
         <Search
           plots={displayedPlots}
           favorites={favorites}
