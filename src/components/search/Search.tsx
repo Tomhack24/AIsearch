@@ -10,6 +10,7 @@ interface SearchProps {
 }
 
 const Search = ({ plots, favorites, toggleFavorite }: SearchProps) => {
+  const [inputValue, setInputValue] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [isEnterPressed, setIsEnterPressed] = useState(false);
 
@@ -22,6 +23,7 @@ const Search = ({ plots, favorites, toggleFavorite }: SearchProps) => {
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
+      setSearchQuery(inputValue);
       setIsEnterPressed(true);
     }
   };
@@ -30,10 +32,9 @@ const Search = ({ plots, favorites, toggleFavorite }: SearchProps) => {
     <div>
       <input
         type="text"
-        value={searchQuery}
+        value={inputValue}
         onChange={(e) => {
-          setSearchQuery(e.target.value);
-          setIsEnterPressed(false);
+          setInputValue(e.target.value)
         }}
         onKeyDown={handleKeyDown}
         placeholder="検索..."
