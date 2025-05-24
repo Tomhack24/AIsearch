@@ -6,9 +6,23 @@ interface PlotDetailProps {
   plot: Plot;
   isFavorite: boolean;
   toggleFavorite: (id: string) => void;
+  highlight?: string;
 }
 
-const PlotDetail = ({ plot, isFavorite, toggleFavorite }: PlotDetailProps) => {
+// ハイライト関数
+function highlightText(text: string, keyword: string) {
+  if (!keyword) return text;
+  const regex = new RegExp(`(${keyword})`, 'gi');
+  return text.split(regex).map((part, i) =>
+    part.toLowerCase() === keyword.toLowerCase() ? (
+      <mark key={i} className="bg-yellow-200">{part}</mark>
+    ) : (
+      part
+    )
+  );
+}
+
+const PlotDetail = ({ plot, isFavorite, toggleFavorite, highlight }: PlotDetailProps) => {
 
   const handleOpen = () => {
     setIsOpen(!isOpen);
@@ -34,8 +48,12 @@ const PlotDetail = ({ plot, isFavorite, toggleFavorite }: PlotDetailProps) => {
           alt={plot.title} 
           className="mx-auto mb-2 w-[200px] h-[120px] object-contain"
         />
-        <div className="text-center text-2xl font-extrabold text-neutral-700 mb-3">{plot.title}</div>
-        <div className="text-start  text-lg mb-5">{plot.headline}</div>
+        <div className="text-center text-2xl font-extrabold text-neutral-700 mb-3">
+          {highlightText(plot.title, highlight ?? "")}
+        </div>
+        <div className="text-start  text-lg mb-5">
+          {highlightText(plot.headline, highlight ?? "")}
+        </div>
         <button
           className='w-full flex items-center justify-end gap-2 py-2 px-4
                      font-bold text-gray-700 border-t-1 border-b-gray-500
@@ -55,14 +73,18 @@ const PlotDetail = ({ plot, isFavorite, toggleFavorite }: PlotDetailProps) => {
             {/* 各項目を個別のセクションとして視覚的に整理 */}
             {/* よい点 */}
             <div className="mb-4">
-              <p className="font-semibold text-gray-800 text-lg mb-1">Good 👍:</p> {/* 見出し */}
-              <div className='whitespace-pre-line text-gray-700'>{plot.good_point}</div>
+              <p className="font-semibold text-gray-800 text-lg mb-1">Good 👍:</p>
+              <div className='whitespace-pre-line text-gray-700'>
+                {highlightText(plot.good_point, highlight ?? "")}
+              </div>
             </div>
 
             {/* 悪い点 */}
             <div className="mb-4">
               <p className="font-semibold text-gray-800 text-lg mb-1">Bad 👎:</p>
-              <div className='whitespace-pre-line text-gray-700'>{plot.bad_point}</div>
+              <div className='whitespace-pre-line text-gray-700'>
+                {highlightText(plot.bad_point, highlight ?? "")}
+              </div>
             </div>
 
             {/* 料金 */}
@@ -90,7 +112,7 @@ const PlotDetail = ({ plot, isFavorite, toggleFavorite }: PlotDetailProps) => {
               <div className="flex flex-wrap gap-2"> {/* キーワードをタグのように表示 */}
                 {plot.keyword && plot.keyword.map((keyword, idx) => ( // カンマ区切りで分割
                   <span key={idx} className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
-                    {keyword.trim()} {/* 前後の空白を削除 */}
+                    {highlightText(keyword.trim(), highlight ?? "")}
                   </span>
                 ))}
               </div>

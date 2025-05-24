@@ -64,6 +64,7 @@ const Search = ({ plots, favorites, toggleFavorite }: SearchProps) => {
               plots={filteredPlots}
               favorites={favorites}
               toggleFavorite={toggleFavorite}
+              highlight={searchQuery}
             />
           </div>
           )}
@@ -76,6 +77,7 @@ const Search = ({ plots, favorites, toggleFavorite }: SearchProps) => {
             plots={plots}
             favorites={favorites}
             toggleFavorite={toggleFavorite}
+            // highlightは未入力時は不要
           />
         </div>
       )}
