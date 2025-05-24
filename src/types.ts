@@ -6,6 +6,6 @@ export interface Plot{
   good_point: string;
   bad_point: string;
   url: string;
-  keyword: string;
+  keyword: string[];
   img_url: string
 }

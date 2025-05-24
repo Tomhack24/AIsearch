@@ -5,7 +5,11 @@ import { useEffect, useState } from "react";
 import PlotsList from "@/components/plots/PlotsList";
 import Search from "@/components/search/Search";
 import { getAllPlots } from "../../lib/supabaseFunction";
+
 import { Plot } from "@/types";
+
+import TagSearch from "@/components/search/TagSearch";
+
 
 export default function Home() {
   const [plots, setPlots] = useState<Plot[]>([]);
@@ -42,12 +46,15 @@ export default function Home() {
         </button>
       </div>
       <div>
+
         <Search
           plots={displayedPlots}
           favorites={favorites}
           toggleFavorite={toggleFavorite}
         />
+        <PlotsList plots={plots}/>
       </div>
+
     </main>
   );
 }
