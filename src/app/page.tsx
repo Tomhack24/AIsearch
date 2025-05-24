@@ -64,7 +64,6 @@ export default function Home() {
           favorites={favorites}
           toggleFavorite={toggleFavorite}
         />
-        <PlotsList plots={plots}/>
       </div>
 
     </main>

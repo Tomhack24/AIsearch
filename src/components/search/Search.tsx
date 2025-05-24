@@ -43,26 +43,22 @@ const Search = ({ plots, favorites, toggleFavorite }: SearchProps) => {
         <div className="mt-2">
           {filteredPlots.length === 0 ? (
             <div className="text-center p-4 bg-gray-50 rounded-lg">
-              <p className="text-gray-600 mb-2">検索結果が見つかりませんでした</p>
-              <p className="text-sm text-gray-500">別のキーワードで検索してみてください</p>
+              <p className="text-gray-600 mb-3">検索結果が見つかりませんでした</p>
+              <div className='flex items-center'>
+                <p className='text-sm mr-2'>ヒント :</p>
+                <TagSearch plots={plots} setSearchQuery={setSearchQuery}/>
+              </div>
             </div>
           ) : (
-            <PlotsList plots={filteredPlots}/>
+            <PlotsList
+              plots={filteredPlots}
+              favorites={favorites}
+              toggleFavorite={toggleFavorite}
+            />
           )}
-
-      <div className='flex items-center'>
-        <p className='text-sm mr-2'>ヒント :</p>
-      <TagSearch plots={plots} setSearchQuery={setSearchQuery}/>
-      </div>
-      {searchQuery && (
-        <div className="mt-2">
-          <PlotsList
-            plots={filteredPlots}
-            favorites={favorites}
-            toggleFavorite={toggleFavorite}
-          />
         </div>
       )}
+
       {!searchQuery && (
         <div className="mt-2">
           <PlotsList
@@ -73,7 +69,7 @@ const Search = ({ plots, favorites, toggleFavorite }: SearchProps) => {
         </div>
       )}
     </div>
-  );
+  )
 };
 
 export default Search;
