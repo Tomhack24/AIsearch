@@ -2,11 +2,13 @@ import { Plot } from '@/types'
 import React, { useState } from 'react'
 
 
-interface PlotDetailProps{
-    plot : Plot;
+interface PlotDetailProps {
+  plot: Plot;
+  isFavorite: boolean;
+  toggleFavorite: (id: string) => void;
 }
 
-const PlotDetail =  ( { plot } : PlotDetailProps) => {
+const PlotDetail = ({ plot, isFavorite, toggleFavorite }: PlotDetailProps) => {
 
   const handleOpen = () => {
     setIsOpen(!isOpen);
@@ -16,9 +18,17 @@ const PlotDetail =  ( { plot } : PlotDetailProps) => {
 
   return (
 
-    <li key={plot.id} className='flex w-[320px] mx-5 my-2 p-5 border-1 border-gray-200 bg-white shadow-xl rounded-4xl'>
-      <div className='text-sm mx-auto'>
+    <li className='relative flex w-[320px] mx-5 my-2 p-5 border-1 border-gray-200 bg-white shadow-xl rounded-4xl'>
+      {/* お気に入りボタン */}
+      <button
+        className="absolute right-4 top-4 text-2xl"
+        onClick={() => toggleFavorite(plot.id)}
+        aria-label="お気に入り"
+      >
+        {isFavorite ? "★" : "☆"}
+      </button>
 
+      <div className='text-sm mx-auto'>
         <img 
           src={plot.img_url} 
           alt={plot.title} 

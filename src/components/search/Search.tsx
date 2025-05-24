@@ -4,9 +4,11 @@ import PlotsList from '../plots/PlotsList';
 
 interface SearchProps {
   plots: Plot[];
+  favorites: string[];
+  toggleFavorite: (id: string) => void;
 }
 
-const Search = ({ plots }: SearchProps) => {
+const Search = ({ plots, favorites, toggleFavorite }: SearchProps) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredPlots = plots.filter(plot => 
@@ -26,7 +28,20 @@ const Search = ({ plots }: SearchProps) => {
       />
       {searchQuery && (
         <div className="mt-2">
-          <PlotsList plots={filteredPlots}/>
+          <PlotsList
+            plots={filteredPlots}
+            favorites={favorites}
+            toggleFavorite={toggleFavorite}
+          />
+        </div>
+      )}
+      {!searchQuery && (
+        <div className="mt-2">
+          <PlotsList
+            plots={plots}
+            favorites={favorites}
+            toggleFavorite={toggleFavorite}
+          />
         </div>
       )}
     </div>
