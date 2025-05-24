@@ -35,19 +35,59 @@ const PlotDetail =  ( { plot } : PlotDetailProps) => {
             {isOpen ? "−" : "＋" } {/* isOpenの状態に応じて表示を切り替え */}
           </span>
         </button>
+        {/* プルダウンメニューのコンテナ */}
           <div 
-            className={`transition-all duration-300  overflow-hidden ${
-            isOpen ? 'max-h-[600px] mt-4' : 'max-h-0'}`}
+            className={`transition-all duration-300 overflow-hidden pt-4 ${ // pt-4 を追加して、上部にスペース
+              isOpen ? 'max-h-[600px]' : 'max-h-0'}`} // max-h を適宜調整
           >
-            <div className='whitespace-pre-line  mb-2'>{plot.good_point}</div>
-            <div className='whitespace-pre-line mb-2'>{plot.bad_point}</div>
-            <a href= {plot.url} className='text-blue-600 hover:text-blue-400 duration:200'>{plot.url}</a>
-            <div>{plot.keyword}</div>
+            {/* 各項目を個別のセクションとして視覚的に整理 */}
+            {/* よい点 */}
+            <div className="mb-4">
+              <p className="font-semibold text-gray-800 text-lg mb-1">Good 👍:</p> {/* 見出し */}
+              <div className='whitespace-pre-line text-gray-700'>{plot.good_point}</div>
+            </div>
+
+            {/* 悪い点 */}
+            <div className="mb-4">
+              <p className="font-semibold text-gray-800 text-lg mb-1">Bad 👎:</p>
+              <div className='whitespace-pre-line text-gray-700'>{plot.bad_point}</div>
+            </div>
+
+            {/* 料金 */}
+            <div className="mb-4">
+              <p className="font-semibold text-gray-800 text-lg mb-1">料金:</p> 
+              <div className='whitespace-pre-line text-gray-700'>{plot.plan}</div>
+            </div>
+
+            {/* 関連リンク */}
+            <div className="mb-4">
+              <p className="font-semibold text-gray-800 text-lg mb-1">関連リンク:</p>
+              <a
+                href={plot.url}
+                target="_blank" // 新しいタブで開く
+                rel="noopener noreferrer" // セキュリティ対策
+                className='text-blue-600 hover:text-blue-400 duration-200 break-all' // break-all で長いURLも途中で改行
+              >
+                {plot.url}
+              </a>
+            </div>
+
+            {/* キーワード */}
+            <div className="mb-2"> {/* キーワードが一番下なので、下のmbは少なめ */}
+              <p className="font-semibold text-gray-800 text-lg mb-1">キーワード:</p>
+              <div className="flex flex-wrap gap-2"> {/* キーワードをタグのように表示 */}
+                {plot.keyword && plot.keyword.map((keyword, idx) => ( // カンマ区切りで分割
+                  <span key={idx} className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                    {keyword.trim()} {/* 前後の空白を削除 */}
+                  </span>
+                ))}
+              </div>
+          </div>
           </div>
       </div>
     </li>
 
   )
 }
-//yaa
+
 export default PlotDetail
