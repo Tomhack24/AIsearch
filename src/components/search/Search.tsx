@@ -16,7 +16,8 @@ const Search = ({ plots, favorites, toggleFavorite }: SearchProps) => {
   const filteredPlots = plots.filter(plot => 
     plot.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     plot.headline.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    plot.good_point.toLowerCase().includes(searchQuery.toLowerCase()) 
+    plot.good_point.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    plot.keyword.some(k => k.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
