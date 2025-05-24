@@ -15,14 +15,16 @@ const PlotDetail =  ( { plot } : PlotDetailProps) => {
   const [isOpen,setIsOpen] = useState(false);
 
   return (
-    <li key={plot.id} className='flex w-[480px] m-10 p-10 border-1 border-gray-200 bg-white shadow-x1 rounded-4xl'>
-      <div className='mx-auto'>
+
+    <li key={plot.id} className='flex w-[320px] mx-5 my-2 p-5 border-1 border-gray-200 bg-white shadow-xl rounded-4xl'>
+      <div className='text-xs mx-auto'>
+
         <img 
           src={plot.img_url} 
           alt={plot.title} 
-          className="mx-auto mb-2 w-[256px] h-[160px] object-contain"
+          className="mx-auto mb-2 w-[200px] h-[120px] object-contain"
         />
-        <div className="text-center text-xl font-semibold text-neutral-700 mb-3">{plot.title}</div>
+        <div className="text-center text-lg font-semibold text-neutral-700 mb-3">{plot.title}</div>
         <div className="text-start  mb-5">{plot.headline}</div>
         <button
           className='w-full flex items-center justify-end gap-2 py-2 px-4

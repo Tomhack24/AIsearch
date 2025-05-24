@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { getAllPlots } from "../../lib/supabaseFunction";
 import PlotsList from "@/components/plots/PlotsList";
 import Search from "@/components/search/Search";
+import { getAllPlots } from "../../lib/supabaseFunction";
 
 
 export default  function Home() {
@@ -22,12 +22,9 @@ export default  function Home() {
   return (
 
     <main className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
-      <h3 className="text-center text-4xl mb-10">AI 検索</h3>
+      <h3 className="mt-50 text-center text-4xl mb-10">AI 検索</h3>
       <div>
-        <Search />
-      </div>
-      <div className="w-full flex justify-center">
-        <PlotsList plots = {plots}/>
+        <Search plots={plots}/>
       </div>
     </main>
   );
