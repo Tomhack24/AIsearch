@@ -1,6 +1,7 @@
 import { Plot } from '@/types'
 import React, { useState } from 'react'
 
+
 interface PlotDetailProps{
     plot : Plot;
 }
@@ -14,7 +15,7 @@ const PlotDetail =  ( { plot } : PlotDetailProps) => {
   const [isOpen,setIsOpen] = useState(false);
 
   return (
-    <li key={plot.id} className='flex w-[480px] m-10 p-10 border-1 border-gray-200 bg-white shadow-xl rounded-4xl'>
+    <li key={plot.id} className='flex w-[480px] m-10 p-10 border-1 border-gray-200 bg-white shadow-x1 rounded-4xl'>
       <div className='mx-auto'>
         <img 
           src={plot.img_url} 
@@ -23,9 +24,17 @@ const PlotDetail =  ( { plot } : PlotDetailProps) => {
         />
         <div className="text-center text-xl font-semibold text-neutral-700 mb-3">{plot.title}</div>
         <div className="text-start  mb-5">{plot.headline}</div>
-        <button className='w-full text-end pt-3 pr-5 font-extrabold text-gray-600 border-t-1 border-b-gray-500' onClick={handleOpen}>
-          {isOpen ? "△" : "▽" }
-          </button>
+        <button
+          className='w-full flex items-center justify-end gap-2 py-2 px-4
+                     font-bold text-gray-700 border-t-1 border-b-gray-500
+                     hover:bg-gray-100 transition-colors duration-200'
+          onClick={handleOpen}
+        >
+          <span className="text-lg">More</span> {/* ボタンの左側に「詳細情報」というテキスト */}
+          <span className="text-2xl leading-none"> {/* アイコン部分のスタイル調整 */}
+            {isOpen ? "−" : "＋" } {/* isOpenの状態に応じて表示を切り替え */}
+          </span>
+        </button>
           <div 
             className={`transition-all duration-300  overflow-hidden ${
             isOpen ? 'max-h-[600px] mt-4' : 'max-h-0'}`}
