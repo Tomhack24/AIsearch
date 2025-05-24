@@ -1,8 +1,15 @@
 import React, { useState } from 'react'
 import { Plot } from '@/types'
 
+<<<<<<< HEAD
 interface SearchProps {
   plots: Plot[];
+=======
+const Search = () => {
+  return (
+    <div> </div>
+  )
+>>>>>>> 35a6642592ce6fa5e1c380136efa75b709e3f14e
 }
 
 const Search = ({ plots }: SearchProps) => {
