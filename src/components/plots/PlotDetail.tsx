@@ -30,7 +30,7 @@ const PlotDetail =  ( { plot } : PlotDetailProps) => {
                      hover:bg-gray-100 transition-colors duration-200'
           onClick={handleOpen}
         >
-          <span className="text-lg">More</span> {/* ボタンの左側に「詳細情報」というテキスト */}
+          <span className="text-lg">More</span> {/* ボタンの左側に「More」というテキスト */}
           <span className="text-2xl leading-none"> {/* アイコン部分のスタイル調整 */}
             {isOpen ? "−" : "＋" } {/* isOpenの状態に応じて表示を切り替え */}
           </span>
@@ -49,5 +49,5 @@ const PlotDetail =  ( { plot } : PlotDetailProps) => {
 
   )
 }
-
+//yaa
 export default PlotDetail
