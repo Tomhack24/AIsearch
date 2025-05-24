@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Plot } from '@/types'
+import PlotsList from '../plots/PlotsList';
 
 interface SearchProps {
   plots: Plot[];
@@ -25,16 +26,7 @@ const Search = ({ plots }: SearchProps) => {
       />
       {searchQuery && (
         <div className="mt-2">
-          {filteredPlots.map((plot) => (
-            <div key={plot.id} className="p-2 border-b">
-              <div className="font-medium">{plot.title}</div>
-              <div className="text-sm text-gray-600">{plot.headline}</div>
-              <div className="text-sm text-gray-600">{plot.good_point}</div>
-              <div className="text-sm text-gray-600">{plot.bad_point}</div>
-              <div className="text-sm text-gray-600">{plot.keyword}</div>
-              <a href= {plot.url} className='text-blue-600 hover:text-blue-400 duration:200'>{plot.url}</a>
-            </div>
-          ))}
+          <PlotsList plots={filteredPlots}/>
         </div>
       )}
     </div>
