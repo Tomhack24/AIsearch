@@ -25,6 +25,7 @@ export default function Home() {
       <h3 className="mt-50 text-center text-4xl mb-10 hover:text-gray-600  duration-200">
         <a href="https://a-isearch-2rxk.vercel.app/">Find My Ai</a>
       </h3>
+
       <FavoriteManager plots={plots}/>
     </main>
   );
