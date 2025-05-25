@@ -1,5 +1,4 @@
 import { Plot } from '@/types';
-import { disconnect } from 'process';
 import React from 'react'
 
 interface SearchProps {
