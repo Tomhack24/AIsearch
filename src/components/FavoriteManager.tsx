@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Search from "@/components/search/Search";
-import { getAllPlots } from "../../lib/supabaseFunction";
 import { Plot } from "@/types";
 
 interface FavoriteManagerProps {
@@ -10,7 +9,6 @@ interface FavoriteManagerProps {
 const FavoriteManager = ({plots} : FavoriteManagerProps) => {
 
   
-  // const [plots, setPlots] = useState<Plot[]>([]);
   const [showFavorites, setShowFavorites] = useState(false);
   const [favorites, setFavorites] = useState<string[]>(() => {
     if (typeof window !== "undefined") {
@@ -19,14 +17,6 @@ const FavoriteManager = ({plots} : FavoriteManagerProps) => {
     }
     return [];
   });
-
-  // useEffect(() => {
-  //   const getPlots = async () => {
-  //     const plots = await getAllPlots();
-  //     setPlots(plots ?? []);
-  //   };
-  //   getPlots();
-  // }, []);
 
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
