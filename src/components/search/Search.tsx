@@ -47,8 +47,12 @@ const Search = ({ plots, favorites, toggleFavorite }: SearchProps) => {
             <div className="text-center p-4 bg-gray-50 rounded-lg">
               <p className="text-gray-600 mb-3">検索結果が見つかりませんでした</p>
               <div className='flex items-center'>
-                <p className='text-sm mr-2'>ヒント :</p>
-                <TagSearch plots={plots} setSearchQuery={setSearchQuery}/>
+                <TagSearch 
+                  plots={plots} 
+                  setSearchQuery={setSearchQuery} 
+                  setInputValue={setInputValue}
+                  setIsEnterPressed={setIsEnterPressed}
+                />
               </div>
             </div>
           ) : (
