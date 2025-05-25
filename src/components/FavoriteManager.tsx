@@ -3,8 +3,15 @@ import Search from "@/components/search/Search";
 import { getAllPlots } from "../../lib/supabaseFunction";
 import { Plot } from "@/types";
 
-const FavoriteManager = () => {
-  const [plots, setPlots] = useState<Plot[]>([]);
+interface FavoriteManagerProps {
+  plots: Plot[];
+}
+
+const FavoriteManager = ({plots} : FavoriteManagerProps) => {
+
+  
+  // const [plots, setPlots] = useState<Plot[]>([]);
+  const [showFavorites, setShowFavorites] = useState(false);
   const [favorites, setFavorites] = useState<string[]>(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("favorites");
@@ -12,15 +19,14 @@ const FavoriteManager = () => {
     }
     return [];
   });
-  const [showFavorites, setShowFavorites] = useState(false);
 
-  useEffect(() => {
-    const getPlots = async () => {
-      const plots = await getAllPlots();
-      setPlots(plots ?? []);
-    };
-    getPlots();
-  }, []);
+  // useEffect(() => {
+  //   const getPlots = async () => {
+  //     const plots = await getAllPlots();
+  //     setPlots(plots ?? []);
+  //   };
+  //   getPlots();
+  // }, []);
 
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
@@ -37,8 +43,8 @@ const FavoriteManager = () => {
     : plots;
 
   return (
-    <>
-      <div className="mb-4">
+    <div>
+      <div className="mb-4 text-center">
         <button
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
           onClick={() => setShowFavorites((prev) => !prev)}
@@ -59,7 +65,7 @@ const FavoriteManager = () => {
           />
         )}
       </div>
-    </>
+    </div>
   );
 };
 
