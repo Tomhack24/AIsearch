@@ -26,7 +26,7 @@ const TagSearch = ({ plots, setSearchQuery, setInputValue, setIsEnterPressed }: 
             {isOpen ? (
                 <div>
                     <div className='w-[800px]'>
-                        {allKeywords.map((keyword, idx) => (
+                        {uniqueKeywords.map((keyword, idx) => (
                             <button
                             key={idx}
                             className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 m-1  rounded-full"
