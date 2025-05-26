@@ -7,6 +7,7 @@
 - [harumu](https://github.com/harunmu) (リーダー)
 - [yoshioka](https://github.com/Tomhack24)
 - [inoue](https://github.com/zebra2525Tai)
+- Takahiro
 
 
 ## 🔧 使用技術
