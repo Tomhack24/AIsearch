@@ -4,7 +4,7 @@
 
 ## 👥 メンバー
 
-- [harumu](https://github.com/harunmu) (リーダー)
+- [harumu](https://github.com/harunmu)
 - [yoshioka](https://github.com/Tomhack24)
 - [inoue](https://github.com/zebra2525Tai)
 - Takahiro
